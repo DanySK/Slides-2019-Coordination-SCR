@@ -3,6 +3,7 @@ title = "My presentation"
 outputs = ["Reveal"]
 +++
 
-# Hello world!
+# Self-organising Coordination Regions:
+# a Pattern for Edge Computing
 
 This is my first slide.
