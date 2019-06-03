@@ -3,7 +3,11 @@ title = "My presentation"
 outputs = ["Reveal"]
 +++
 
-# Self-organising Coordination Regions:
-# a Pattern for Edge Computing
+## [Self-organising Coordination Regions](https://danysk.github.io/Slides-2019-PSLab-SGCG/)
+### [a Pattern for Edge Computing](https://danysk.github.io/Slides-2019-PSLab-SGCG/)
 
-This is my first slide.
+Roberto Casadei, __Danilo Pianini__,
+
+Mirko Viroli, Antonio Natali
+
+---
