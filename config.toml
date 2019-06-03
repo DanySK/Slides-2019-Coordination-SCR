@@ -1,0 +1,12 @@
+baseURL = "."
+languageCode = "en-us"
+title = "Self-organising Coordination Regions: a Pattern for Edge Computing"
+theme = "reveal-hugo"
+relativeURLs = "true"
+uglyURLs = "true"
+publishDir = "docs"
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
