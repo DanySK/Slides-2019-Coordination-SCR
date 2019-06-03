@@ -125,14 +125,318 @@
       data-background-image="assets/bg.png">
   
 
-<h2 id="shared-solution-elements-1">Shared solution elements</h2>
+<h4 id="self-organising-coordination-regions">Self-organising coordination regions</h4>
+
+<h3 id="structure">Structure</h3>
+
+<p><img src="assets/sgcg-structure2.png" alt="SCR structure" /></p>
+
+</section>
+
+<section data-shortcode-section>
+<p><section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png"></p>
+
+<h4 id="self-organising-coordination-regions">Self-organising coordination regions</h4>
+
+<h3 id="dynamics">Dynamics</h3>
+
+<p><img src="assets/sgcg-dataflow2.png" alt="SCR dynamics" /></p>
+
+</section>
+
+<p><section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png"></p>
+
+<h3 id="apply-when">Apply when&hellip;</h3>
+
+<ul>
+<li>larger-than-local perspective, globality inconvenient</li>
+<li>Information is relevant in the proximity of its source</li>
+<li>Deployment is unknown or subject to changes
+
+<ul>
+<li>The software must be able to run on the cloud or on the edge depending on specific deployment or even runtime contingencies</li>
+</ul></li>
+</ul>
+
+</section>
+
+<p><section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png"></p>
+
+<h3 id="not-to-be-used-when">Not to be used when&hellip;</h3>
+
+<ul>
+<li>decision making can be purely local</li>
+<li>decision making can be centralised
+
+<ul>
+<li>(single leader election is possible, but often inefficient)</li>
+</ul></li>
+<li>Deployment is well-known, network is static</li>
+</ul>
+
+</section>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="implementation-issues">Implementation issues</h4>
+
+<h3 id="leader-election">Leader Election</h3>
+
+<ul>
+<li><em>Consensus strategy</em> &ndash; centralized or distributed?</li>
+<li><em>Candidate selection</em> &ndash; heterogeneity of devices and network</li>
+<li><em>Dinamicity and adaptivity</em> &ndash; select leaders statically, elect them once, elect them at time intervals, elect them continuously</li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="implementation-issues-1">Implementation issues</h4>
+
+<h3 id="formation-of-regions-and-downstream">Formation of regions and downstream</h3>
+
+<p>Similar issues, information flows from leader to users</p>
+
+<ul>
+<li><em>Gossip</em> &ndash; monotonic information</li>
+<li><em>Time-replicated gossip</em> &ndash; <a href="https://doi.org/10.1007/978-3-319-39519-7_12">from Coordination 2016</a></li>
+<li><em>Gradient-cast</em> &ndash; Different gradients, different performance</li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="implementation-issues-2">Implementation issues</h4>
+
+<h3 id="upstream-accumulation">Upstream: accumulation</h3>
+
+<p>Tougher than downstream</p>
+
+<ul>
+<li><em>Gossip</em> &ndash; monotonic, requires idempotence, expensive</li>
+<li><em>Time-replicated gossip</em> &ndash; tackles monotonicity and idempotence, but even more expensive</li>
+<li><em>Spanning-tree accumulation</em> &ndash; Scalable but fragile</li>
+<li><em>Multi-path techniques</em> &ndash; Slower convergence, higher reliability</li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="implementation-template">Implementation template</h4>
+
+<pre><code class="language-scala">class SCR extends AggregateProgram
+    with BlockG with BlockC with BlockS {
+  def main = {
+    // Field of leaders, with at least grain distance
+    val leader = branch(isCandidate) { S(grain) } { false }
+    // Gradient from leaders based on a given distance metric
+    val potential = distanceTo(leader, metric)
+    // gathers local values towards leaders by aggregation
+    val convergeCast = C(potential, local, aggregationFun)
+    // on leaders, takes a decision based on received data
+    val decision = decisionMaking(leader, convergeCast)
+    // broadcast decisions and take action
+    val divergeCast = G(leader, metric, decision)
+    localAction(divergeCast) }}
+</code></pre>
+
+<p>Written in <a href="https://www.scala-lang.org/">Scala</a> with the <a href="https://scafi.github.io">Scafi</a> DSL</p>
+
+<p><a href="https://doi.org/10.1109/MC.2015.261">Aggregate programming</a> is a natural fit for SCR</p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="advanced-implementations">Advanced implementations</h4>
+
+<h3 id="feedback-loops">Feedback loops</h3>
+
+<p>Dynamic tuning and advanced adaptation</p>
+
+<ul>
+<li>e.g. load balacing by tuning each leader&rsquo;s region size according to on the amount of upstreamed data</li>
+</ul>
+
+<p>Feedbacks introduce further complexity</p>
+
+<ul>
+<li>The system may oscillate</li>
+<li>Low-pass filtering often advisable
+
+<ul>
+<li>e.g. exponential backoff</li>
+</ul></li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h2 id="case-study">Case study</h2>
+
+<h4 id="video-streaming-collection">Video streaming collection</h4>
+
+<ul>
+<li>Urban center (mid-sized Italian city)</li>
+<li>200 edge servers, randomized grid deployment</li>
+<li>Dynamically selected set of edge servers as leaders (one every 200m)</li>
+<li><em>Feedback system</em>: the more users stream content to an edge server, the more its served area shrinks</li>
+<li>After ten minutes, we suddenly turn off a percentage of the leaders, and see how the system reacts</li>
+<li>The <a href="https://bitbucket.org/danysk/experiment-2019-coordination-dynamic-orchestration/src/master/">experiment is reproducible</a></li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/screen1.png">
+  
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/screen3.png">
+  
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h3 id="parameters-symbols">Parameters / Symbols</h3>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>α</td>
+<td align="center">exponential backoff parameter. lower values, smoother output</td>
+</tr>
+
+<tr>
+<td>fb</td>
+<td align="center"><code>on</code> if feedback enabled, <code>off</code> otherwise</td>
+</tr>
+
+<tr>
+<td>ρ</td>
+<td align="center">probability for a leader to shut down</td>
+</tr>
+
+<tr>
+<td>E</td>
+<td align="center">expected value / statistic mean</td>
+</tr>
+
+<tr>
+<td>σ</td>
+<td align="center">standard deviation</td>
+</tr>
+
+<tr>
+<td>Σ</td>
+<td align="center">sum</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="feedback-loop-tuning">Feedback loop tuning</h4>
+
+<p><img src="assets/feedbackalpha0.png" alt="asd" /></p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="resilience">Resilience</h4>
+
+<p><img src="assets/SumResilience.png" alt="asd" /></p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="load-balancing">Load balancing</h4>
+
+<p><img src="assets/StandardDeviationResilience.png" alt="asd" /></p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="conclusion">Conclusion</h4>
+
+<ul>
+<li>General solution to a commonly occurring problem
+
+<ul>
+<li>&ndash;&gt; We discovered a <a href="https://en.wikipedia.org/wiki/Software_design_pattern">design pattern</a>!</li>
+</ul></li>
+</ul>
 
 <ol>
-<li><em>Election of leaders</em> &ndash; from a set of candidates</li>
-<li><em>Formation of regions</em> &ndash; by assigning each user to a single leader</li>
-<li><em>Upstream information flow</em> &ndash; from users to leaders</li>
-<li><em>Downstream information flow</em> &ndash; from leaders to users</li>
+<li>Elect leaders</li>
+<li>Set up influence areas</li>
+<li>Build downstream communication</li>
+<li>Build upstream communication</li>
 </ol>
+
+<ul>
+<li>One possible implementation provided and evaluated in the aggregate computing framework</li>
+<li>Particularly relevant for mixed edge/cloud systems</li>
+</ul>
 </section>
 
   
