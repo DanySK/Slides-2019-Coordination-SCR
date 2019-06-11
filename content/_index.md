@@ -12,6 +12,10 @@ Mirko Viroli, Antonio Natali
 
 ---
 
+{{< slide background-image="assets/aerial-shot.jpg" >}}
+
+---
+
 {{< slide background-image="assets/aerial-shot-bg.jpg" >}}
 
 ## Motivating case studies
@@ -24,6 +28,10 @@ Mirko Viroli, Antonio Natali
 * Processing can be on cloud, on fog, on edge
 
 See paper by Dautov et al.
+
+---
+
+{{< slide background-image="assets/360gaming.jpg" >}}
 
 ---
 
@@ -69,21 +77,95 @@ See paper by Dautov et al.
 
 {{< slide background-image="assets/bg.png" >}}
 
-## Shared solution elements
+## Self-organising coordination regions
 
-1. *Election of leaders* -- from a set of candidates
-2. *Formation of regions* -- by assigning each user to a single leader
-3. *Upstream information flow* -- from users to leaders
-4. *Downstream information flow* -- from leaders to users
+General solution to a commonly occurring problem
+
+<span class="fragment">
+--> We discovered a [design pattern](https://en.wikipedia.org/wiki/Software_design_pattern)!
+</span>
 
 ---
 
 {{< slide background-image="assets/bg.png" >}}
 
-#### Self-organising coordination regions
-### Structure
+## Shared solution elements
 
-![SCR structure](assets/sgcg-structure2.png)
+<span class="fragment">
+1. *Election of leaders* -- from a set of candidates
+</span>
+
+<span class="fragment">
+2. *Formation of regions* -- by assigning each user to a single leader
+</span>
+
+<span class="fragment">
+3. *Upstream information flow* -- from users to leaders
+</span>
+
+<span class="fragment">
+4. *Downstream information flow* -- from leaders to users
+</span>
+
+---
+
+{{< slide transition="slide-in fade-out" >}}
+
+#### 1 of 4 -- Leader election
+
+<img src="assets/network-1.svg" width="50%" height="50%" />
+
+(logical) network of devices
+
+---
+
+{{< slide transition="fade-in fade-out" >}}
+
+#### 1 of 4 -- Leader election
+
+<img src="assets/network-candidates.svg" width="50%" height="50%" />
+
+<span style="color: #f97b00;"> orange</span> devices are leader candidates
+
+---
+
+{{< slide transition="fade-in fade-out" >}}
+
+#### 1 of 4 -- Leader election
+
+<img src="assets/network-leaders.svg" width="50%" height="50%" />
+
+<span style="color: #f90000;"> red</span> devices are elected leaders
+
+---
+
+{{< slide transition="fade-in fade-out" >}}
+
+#### 2 of 4 -- Formation of regions
+
+<img src="assets/network-regions.svg" width="50%" height="50%" />
+
+one color per region, one leader per region
+
+---
+
+{{< slide transition="fade-in fade-out" >}}
+
+#### 3 of 4 -- Upstream communication
+
+<img src="assets/network-upstream.svg" width="50%" height="50%" />
+
+from users to leaders
+
+---
+
+{{< slide transition="fade-in slide-out" >}}
+
+#### 4 of 4 -- Downstream communication
+
+<img src="assets/network-downstream2.svg" width="50%" height="50%" />
+
+from leaders to users
 
 ---
 

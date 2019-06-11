@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.55.5" />
+	<meta name="generator" content="Hugo 0.55.6" />
     <meta charset="utf-8">
 <title>My presentation</title>
 
@@ -31,6 +31,13 @@
 
 
 <section data-noprocess data-shortcode-slide
+      data-background-image="assets/aerial-shot.jpg">
+  
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
       data-background-image="assets/aerial-shot-bg.jpg">
   
 
@@ -46,6 +53,13 @@
 </ul>
 
 <p>See paper by Dautov et al.</p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/360gaming.jpg">
+  
 
 </section>
 
@@ -109,14 +123,13 @@
       data-background-image="assets/bg.png">
   
 
-<h2 id="shared-solution-elements">Shared solution elements</h2>
+<h2 id="self-organising-coordination-regions">Self-organising coordination regions</h2>
 
-<ol>
-<li><em>Election of leaders</em> &ndash; from a set of candidates</li>
-<li><em>Formation of regions</em> &ndash; by assigning each user to a single leader</li>
-<li><em>Upstream information flow</em> &ndash; from users to leaders</li>
-<li><em>Downstream information flow</em> &ndash; from leaders to users</li>
-</ol>
+<p>General solution to a commonly occurring problem</p>
+
+<p><span class="fragment">
+&ndash;&gt; We discovered a <a href="https://en.wikipedia.org/wiki/Software_design_pattern">design pattern</a>!
+</span></p>
 
 </section>
 
@@ -125,11 +138,101 @@
       data-background-image="assets/bg.png">
   
 
-<h4 id="self-organising-coordination-regions">Self-organising coordination regions</h4>
+<h2 id="shared-solution-elements">Shared solution elements</h2>
 
-<h3 id="structure">Structure</h3>
+<p><span class="fragment">
+1. <em>Election of leaders</em> &ndash; from a set of candidates
+</span></p>
 
-<p><img src="assets/sgcg-structure2.png" alt="SCR structure" /></p>
+<p><span class="fragment">
+2. <em>Formation of regions</em> &ndash; by assigning each user to a single leader
+</span></p>
+
+<p><span class="fragment">
+3. <em>Upstream information flow</em> &ndash; from users to leaders
+</span></p>
+
+<p><span class="fragment">
+4. <em>Downstream information flow</em> &ndash; from leaders to users
+</span></p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-transition="slide-in fade-out">
+  
+
+<h4 id="1-of-4-leader-election">1 of 4 &ndash; Leader election</h4>
+
+<p><img src="assets/network-1.svg" width="50%" height="50%" /></p>
+
+<p>(logical) network of devices</p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-transition="fade-in fade-out">
+  
+
+<h4 id="1-of-4-leader-election-1">1 of 4 &ndash; Leader election</h4>
+
+<p><img src="assets/network-candidates.svg" width="50%" height="50%" /></p>
+
+<p><span style="color: #f97b00;"> orange</span> devices are leader candidates</p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-transition="fade-in fade-out">
+  
+
+<h4 id="1-of-4-leader-election-2">1 of 4 &ndash; Leader election</h4>
+
+<p><img src="assets/network-leaders.svg" width="50%" height="50%" /></p>
+
+<p><span style="color: #f90000;"> red</span> devices are elected leaders</p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-transition="fade-in fade-out">
+  
+
+<h4 id="2-of-4-formation-of-regions">2 of 4 &ndash; Formation of regions</h4>
+
+<p><img src="assets/network-regions.svg" width="50%" height="50%" /></p>
+
+<p>one color per region, one leader per region</p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-transition="fade-in fade-out">
+  
+
+<h4 id="3-of-4-upstream-communication">3 of 4 &ndash; Upstream communication</h4>
+
+<p><img src="assets/network-upstream.svg" width="50%" height="50%" /></p>
+
+<p>from users to leaders</p>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-transition="fade-in slide-out">
+  
+
+<h4 id="4-of-4-downstream-communication">4 of 4 &ndash; Downstream communication</h4>
+
+<p><img src="assets/network-downstream2.svg" width="50%" height="50%" /></p>
+
+<p>from leaders to users</p>
 
 </section>
 
