@@ -3,7 +3,7 @@
   <head>
 	<meta name="generator" content="Hugo 0.55.6" />
     <meta charset="utf-8">
-<title>My presentation</title>
+<title>Self-organising Coordination Regions: a Pattern for Edge Computing by Danilo Pianini</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,6 +18,9 @@
       <div class="slides">
   
 <section>
+
+<p><script src="prism.js"></script>
+<link rel="stylesheet" href="prism.css"></p>
 
 <h2 id="self-organising-coordination-regions-https-danysk-github-io-slides-2019-pslab-sgcg"><a href="https://danysk.github.io/Slides-2019-PSLab-SGCG/">Self-organising Coordination Regions</a></h2>
 
@@ -46,10 +49,22 @@
 <p><a href="https://doi.org/10.1002/spe.2586">Metropolitan collaborative surveillance</a></p>
 
 <ul>
-<li>Discovery and integration of smart cameras</li>
-<li>Multiple video streams to be fused and synchronized</li>
-<li>Object detection, tracking, analysis</li>
-<li>Processing can be on cloud, on fog, on edge</li>
+<li><span class='fragment '
+>
+Discovery and integration of smart cameras
+</span></li>
+<li><span class='fragment '
+>
+Multiple video streams to be fused and synchronized
+</span></li>
+<li><span class='fragment '
+>
+Object detection, tracking, analysis
+</span></li>
+<li><span class='fragment '
+>
+Processing can be on cloud, on fog, on edge
+</span></li>
 </ul>
 
 <p>See paper by Dautov et al.</p>
@@ -70,14 +85,28 @@
 
 <h2 id="motivating-case-studies-1">Motivating case studies</h2>
 
-<p><a href="https://doi.org/10.1109/FMEC.2017.7946410">360° view multiplayer gaming</a></p>
+<p><a href="https://doi.org/10.1109/FMEC.2017.7946410">360° multi-view multiplayer gaming</a></p>
 
 <ul>
-<li>Multi-view (see what others are seeing)</li>
-<li>Augmented or Virtual Reality: free movement</li>
-<li>Delay intolerance</li>
-<li>Excessive bandwidth usage</li>
+<li><span class='fragment '
+>
+Multi-view (see what others are seeing)
+</span></li>
+<li><span class='fragment '
+>
+Augmented or Virtual Reality: free movement
+</span></li>
+<li><span class='fragment '
+>
+Delay intolerance
+</span></li>
+<li><span class='fragment '
+>
+Excessive bandwidth usage
+</span></li>
 </ul>
+
+<p>See paper by Bilal et al.</p>
 
 </section>
 
@@ -89,10 +118,22 @@
 <h2 id="problem-and-forces">Problem and forces</h2>
 
 <ul>
-<li><strong>heterogeneity</strong>: <em>asymmetry among device capabilities</em></li>
-<li><strong>locality</strong>: <em>information is more valuable when is close to its source, moving it is expensive</em></li>
-<li><strong>hybrid coordination</strong>: <em>information aggregation is required, full centralization brings unacceptable costs</em></li>
-<li><strong>dinamicity</strong> <em>environment, network, and system structure changes at runtime</em></li>
+<li><span class='fragment '
+>
+<strong>heterogeneity</strong>: <em>asymmetry among device capabilities</em>
+</span></li>
+<li><span class='fragment '
+>
+<strong>locality</strong>: <em>information is more valuable when is close to its source, moving it is expensive</em>
+</span></li>
+<li><span class='fragment '
+>
+<strong>hybrid coordination</strong>: <em>information aggregation is required, full centralization brings unacceptable costs</em>
+</span></li>
+<li><span class='fragment '
+>
+<strong>dinamicity</strong> <em>environment, network, and system structure changes at runtime</em>
+</span></li>
 </ul>
 
 </section>
@@ -123,12 +164,15 @@
       data-background-image="assets/bg.png">
   
 
-<h2 id="self-organising-coordination-regions">Self-organising coordination regions</h2>
-
 <p>General solution to a commonly occurring problem</p>
 
-<p><span class="fragment">
-&ndash;&gt; We discovered a <a href="https://en.wikipedia.org/wiki/Software_design_pattern">design pattern</a>!
+<p><span class="fragment" >
+&ndash;&gt; We propose a <a href="https://en.wikipedia.org/wiki/Software_design_pattern">design pattern</a>
+(discovered in literature)
+</span></p>
+
+<p><span class="fragment" style="color: #3ea0e4;">
+<strong>SELF-ORGANISING COORDINATION REGIONS</strong>
 </span></p>
 
 </section>
@@ -236,15 +280,179 @@
 
 </section>
 
-<section data-shortcode-section>
-<p><section data-noprocess data-shortcode-slide
-      data-background-image="assets/bg.png"></p>
 
-<h4 id="self-organising-coordination-regions">Self-organising coordination regions</h4>
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="implementation-issues">Implementation issues</h4>
+
+<h3 id="leader-election">Leader Election</h3>
+
+<ul>
+<li><span class='fragment '
+>
+<strong>Candidate selection</strong> &ndash; <em>heterogeneity of devices and network</em>
+</span></li>
+<li><span class='fragment '
+>
+<strong>Consensus strategy</strong> &ndash; <em>centralized or distributed?</em>
+</span></li>
+<li><span class='fragment '
+>
+<strong>Dinamicity and adaptivity</strong> &ndash; <em>select leaders statically, elect them once, elect them at time intervals, elect them continuously</em>
+</span></li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="implementation-issues-1">Implementation issues</h4>
+
+<h3 id="formation-of-regions-and-downstream">Formation of regions and downstream</h3>
+
+<p>Similar issues, information flows from leader to users</p>
+
+<ul>
+<li><span class='fragment '
+>
+<em>Gossip</em> &ndash; monotonic information
+</span></li>
+<li><span class='fragment '
+>
+<em>Time-replicated gossip</em> &ndash; <a href="https://doi.org/10.1007/978-3-319-39519-7_12">from Coordination 2016</a>
+</span></li>
+<li><span class='fragment '
+>
+<em>Gradient-cast</em> &ndash; Distance-metric based, different gradients -&gt; different performance
+</span></li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<h4 id="implementation-issues-2">Implementation issues</h4>
+
+<h3 id="upstream-accumulation">Upstream: accumulation</h3>
+
+<p>Tougher than downstream in non star-networks</p>
+
+<ul>
+<li><span class='fragment '
+>
+<em>Gossip</em> &ndash; monotonic, requires idempotence, expensive
+</span></li>
+<li><span class='fragment '
+>
+<em>Time-replicated gossip</em> &ndash; tackles monotonicity and idempotence, but even more expensive
+</span></li>
+<li><span class='fragment '
+>
+<em>Spanning-tree accumulation</em> &ndash; Scalable but fragile
+</span></li>
+<li><span class='fragment '
+>
+<em>Multi-path techniques</em> &ndash; Slower convergence, higher reliability
+</span></li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png"
+      data-transition="slide-in fade-out">
+  
 
 <h3 id="dynamics">Dynamics</h3>
 
-<p><img src="assets/sgcg-dataflow2.png" alt="SCR dynamics" /></p>
+<p><img src="assets/dynamics-base.svg" alt="SCR dynamics" /></p>
+
+<ul>
+<li>Perturbations are unavoidable</li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png"
+      data-transition="fade-in fade-out">
+  
+
+<h3 id="dynamics-1">Dynamics</h3>
+
+<p><img src="assets/dynamics-f1.svg" alt="SCR dynamics" /></p>
+
+<ul>
+<li>Computation results may influence future decisions</li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png"
+      data-transition="fade-in fade-out">
+  
+
+<h3 id="dynamics-2">Dynamics</h3>
+
+<p><img src="assets/dynamics-f2.svg" alt="SCR dynamics" /></p>
+
+<ul>
+<li>Including region sizes</li>
+</ul>
+
+</section>
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png"
+      data-transition="fade-in slide-out">
+  
+
+<h3 id="dynamics-3">Dynamics</h3>
+
+<p><img src="assets/dynamics-all.svg" alt="SCR dynamics" /></p>
+
+<ul>
+<li>Oscillations however are to be considered</li>
+</ul>
+
+</section>
+
+<!--
+
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="assets/bg.png">
+  
+
+<section data-shortcode-section>
+<h3 id="feedback-loops">Feedback loops</h3>
+
+<ul>
+<li>Dynamic tuning and advanced adaptation
+
+<ul>
+<li>e.g. load balacing by resizing regions, adapting to upstreamed data</li>
+</ul></li>
+<li>Feedbacks introduce further complexity
+
+<ul>
+<li>The system may oscillate</li>
+<li>Low-pass filtering often advisable (e.g. exponential backoff)</li>
+</ul></li>
+</ul>
 
 </section>
 
@@ -284,61 +492,7 @@
 
 </section>
 
-
-<section data-noprocess data-shortcode-slide
-      data-background-image="assets/bg.png">
-  
-
-<h4 id="implementation-issues">Implementation issues</h4>
-
-<h3 id="leader-election">Leader Election</h3>
-
-<ul>
-<li><em>Consensus strategy</em> &ndash; centralized or distributed?</li>
-<li><em>Candidate selection</em> &ndash; heterogeneity of devices and network</li>
-<li><em>Dinamicity and adaptivity</em> &ndash; select leaders statically, elect them once, elect them at time intervals, elect them continuously</li>
-</ul>
-
-</section>
-
-
-<section data-noprocess data-shortcode-slide
-      data-background-image="assets/bg.png">
-  
-
-<h4 id="implementation-issues-1">Implementation issues</h4>
-
-<h3 id="formation-of-regions-and-downstream">Formation of regions and downstream</h3>
-
-<p>Similar issues, information flows from leader to users</p>
-
-<ul>
-<li><em>Gossip</em> &ndash; monotonic information</li>
-<li><em>Time-replicated gossip</em> &ndash; <a href="https://doi.org/10.1007/978-3-319-39519-7_12">from Coordination 2016</a></li>
-<li><em>Gradient-cast</em> &ndash; Different gradients, different performance</li>
-</ul>
-
-</section>
-
-
-<section data-noprocess data-shortcode-slide
-      data-background-image="assets/bg.png">
-  
-
-<h4 id="implementation-issues-2">Implementation issues</h4>
-
-<h3 id="upstream-accumulation">Upstream: accumulation</h3>
-
-<p>Tougher than downstream</p>
-
-<ul>
-<li><em>Gossip</em> &ndash; monotonic, requires idempotence, expensive</li>
-<li><em>Time-replicated gossip</em> &ndash; tackles monotonicity and idempotence, but even more expensive</li>
-<li><em>Spanning-tree accumulation</em> &ndash; Scalable but fragile</li>
-<li><em>Multi-path techniques</em> &ndash; Slower convergence, higher reliability</li>
-</ul>
-
-</section>
+-->
 
 
 <section data-noprocess data-shortcode-slide
@@ -347,20 +501,20 @@
 
 <h4 id="implementation-template">Implementation template</h4>
 
-<pre><code class="language-scala">class SCR extends AggregateProgram
-    with BlockG with BlockC with BlockS {
+<pre><code class="language-scala">class SCR extends AggregateProgram with BlockG with BlockC with BlockS {
   def main = {
-    // Field of leaders, with at least grain distance
-    val leader = branch(isCandidate) { S(grain) } { false }
-    // Gradient from leaders based on a given distance metric
-    val potential = distanceTo(leader, metric)
-    // gathers local values towards leaders by aggregation
-    val convergeCast = C(potential, local, aggregationFun)
-    // on leaders, takes a decision based on received data
-    val decision = decisionMaking(leader, convergeCast)
-    // broadcast decisions and take action
-    val divergeCast = G(leader, metric, decision)
-    localAction(divergeCast) }}
+        // Field of leaders, with at least grain distance
+        val leader = branch(isCandidate) { S(grain) } { false }
+        // Gradient from leaders based on a given distance metric
+        val potential = distanceTo(leader, metric)
+        // gathers local values towards leaders by aggregation
+        val convergeCast = C(potential, local, aggregationFun)
+        // on leaders, takes a decision based on received data
+        val decision = decisionMaking(leader, convergeCast)
+        // broadcast decisions and take action
+        val divergeCast = G(leader, metric, decision)
+        localAction(divergeCast)
+    }}
 </code></pre>
 
 <p>Written in <a href="https://www.scala-lang.org/">Scala</a> with the <a href="https://scafi.github.io">Scafi</a> DSL</p>
@@ -374,25 +528,16 @@
       data-background-image="assets/bg.png">
   
 
-<h4 id="advanced-implementations">Advanced implementations</h4>
+<h4 id="manifesto-of-aggregate-computing">Manifesto of aggregate computing</h4>
 
-<h3 id="feedback-loops">Feedback loops</h3>
-
-<p>Dynamic tuning and advanced adaptation</p>
-
-<ul>
-<li>e.g. load balacing by tuning each leader&rsquo;s region size according to on the amount of upstreamed data</li>
-</ul>
-
-<p>Feedbacks introduce further complexity</p>
+<p><span style="color: #3ea0e4;">
+program the <strong>aggregate</strong>, not single devices
+<span></p>
 
 <ul>
-<li>The system may oscillate</li>
-<li>Low-pass filtering often advisable
-
-<ul>
-<li>e.g. exponential backoff</li>
-</ul></li>
+<li><strong>Computing machine</strong> &ndash; <em>aggregate of devices as a single entity, fading to actual space</em></li>
+<li><strong>Elaboration process</strong> &ndash; <em>atomic manipulation of a collective data structure</em></li>
+<li><strong>Networking and protocols</strong>: <em>hidden under the hood</em></li>
 </ul>
 
 </section>
@@ -404,15 +549,33 @@
 
 <h2 id="case-study">Case study</h2>
 
-<h4 id="video-streaming-collection">Video streaming collection</h4>
+<h4 id="urban-video-streaming-collection">Urban video streaming collection</h4>
 
 <ul>
-<li>Urban center (mid-sized Italian city)</li>
-<li>200 edge servers, randomized grid deployment</li>
-<li>Dynamically selected set of edge servers as leaders (one every 200m)</li>
-<li><em>Feedback system</em>: the more users stream content to an edge server, the more its served area shrinks</li>
-<li>After ten minutes, we suddenly turn off a percentage of the leaders, and see how the system reacts</li>
-<li>The <a href="https://bitbucket.org/danysk/experiment-2019-coordination-dynamic-orchestration/src/master/">experiment is reproducible</a></li>
+<li><span class='fragment '
+>
+Urban center (mid-sized Italian city)
+</span></li>
+<li><span class='fragment '
+>
+200 edge servers, randomized grid deployment
+</span></li>
+<li><span class='fragment '
+>
+Dynamically selected set of edge servers as leaders (one every ~200m)
+</span></li>
+<li><span class='fragment '
+>
+<em>Feedback system</em>: the more users stream content to an edge server, the more its served area shrinks
+</span></li>
+<li><span class='fragment '
+>
+After ten minutes, we suddenly turn off a percentage of the leaders, and see how the system reacts
+</span></li>
+<li><span class='fragment '
+>
+The <a href="https://bitbucket.org/danysk/experiment-2019-coordination-dynamic-orchestration/src/master/">experiment is reproducible</a>
+</span></li>
 </ul>
 
 </section>
@@ -488,7 +651,11 @@
 
 <h4 id="feedback-loop-tuning">Feedback loop tuning</h4>
 
-<p><img src="assets/feedbackalpha0.png" alt="asd" /></p>
+<p><img src="assets/feedbackalpha0.svg" height="400em" /></p>
+
+<ul>
+<li>trade-off between smoothness and reactivity</li>
+</ul>
 
 </section>
 
@@ -497,9 +664,13 @@
       data-background-image="assets/bg.png">
   
 
-<h4 id="resilience">Resilience</h4>
+<h4 id="resilience-to-disruption">Resilience to disruption</h4>
 
-<p><img src="assets/SumResilience.png" alt="asd" /></p>
+<p><img src="assets/SumResilience.svg" height="400em" /></p>
+
+<ul>
+<li>quick recover from large and small perturbations</li>
+</ul>
 
 </section>
 
@@ -510,7 +681,11 @@
 
 <h4 id="load-balancing">Load balancing</h4>
 
-<p><img src="assets/StandardDeviationResilience.png" alt="asd" /></p>
+<p><img src="assets/StandardDeviationResilience.svg" height="400em" /></p>
+
+<ul>
+<li>cold lines have lower variance &ndash;&gt; better load sharing</li>
+</ul>
 
 </section>
 
@@ -525,20 +700,30 @@
 <li>General solution to a commonly occurring problem
 
 <ul>
-<li>&ndash;&gt; We discovered a <a href="https://en.wikipedia.org/wiki/Software_design_pattern">design pattern</a>!</li>
+<li>&ndash;&gt; <a href="https://en.wikipedia.org/wiki/Software_design_pattern">New design pattern</a>!</li>
 </ul></li>
 </ul>
 
 <ol>
 <li>Elect leaders</li>
-<li>Set up influence areas</li>
+<li>Set up influence areas (<em>regions</em>)</li>
 <li>Build downstream communication</li>
 <li>Build upstream communication</li>
 </ol>
 
 <ul>
-<li>One possible implementation provided and evaluated in the aggregate computing framework</li>
-<li>Particularly relevant for mixed edge/cloud systems</li>
+<li><span class='fragment '
+>
+Hybrid coordination: between centralized and decentralized
+</span></li>
+<li><span class='fragment '
+>
+One possible implementation provided and evaluated in the aggregate computing framework
+</span></li>
+<li><span class='fragment '
+>
+Particularly relevant for mixed edge/cloud systems
+</span></li>
 </ul>
 </section>
 
