@@ -60,7 +60,7 @@ See paper by Bilal et al.
 * {{% fragment %}}**heterogeneity**: *asymmetry among device capabilities*{{% /fragment %}}
 * {{% fragment %}}**locality**: *information is more valuable when is close to its source, moving it is expensive*{{% /fragment %}}
 * {{% fragment %}}**hybrid coordination**: *information aggregation is required, full centralization brings unacceptable costs*{{% /fragment %}}
-* {{% fragment %}}**dinamicity** *environment, network, and system structure changes at runtime*{{% /fragment %}}
+* {{% fragment %}}**dinamicity**: *environment, network, and system structure changes at runtime*{{% /fragment %}}
 
 ---
 
@@ -198,7 +198,7 @@ Similar issues, information flows from leader to users
 
 * {{% fragment %}}*Gossip* -- monotonic information{{% /fragment %}}
 * {{% fragment %}}*Time-replicated gossip* -- [from Coordination 2016](https://doi.org/10.1007/978-3-319-39519-7_12){{% /fragment %}}
-* {{% fragment %}}*Gradient-cast* -- Distance-metric based, different gradients -> different performance{{% /fragment %}}
+* {{% fragment %}}*Gradient-cast* -- distance-metric based, different gradients -> different performance{{% /fragment %}}
 
 ---
 
@@ -211,8 +211,8 @@ Tougher than downstream in non star-networks
 
 * {{% fragment %}}*Gossip* -- monotonic, requires idempotence, expensive{{% /fragment %}}
 * {{% fragment %}}*Time-replicated gossip* -- tackles monotonicity and idempotence, but even more expensive{{% /fragment %}}
-* {{% fragment %}}*Spanning-tree accumulation* -- Scalable but fragile{{% /fragment %}}
-* {{% fragment %}}*Multi-path techniques* -- Slower convergence, higher reliability{{% /fragment %}}
+* {{% fragment %}}*Spanning-tree accumulation* -- scalable but fragile{{% /fragment %}}
+* {{% fragment %}}*Multi-path techniques* -- slower convergence, higher reliability{{% /fragment %}}
 
 ---
 
@@ -393,7 +393,7 @@ program the **aggregate**, not single devices
 
 <img src="assets/SumResilience.svg" height="400em" />
 
-* quick recover from large and small perturbations
+* quick recovery from large and small perturbations
 
 ---
 
