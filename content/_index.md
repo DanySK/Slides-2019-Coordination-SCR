@@ -358,6 +358,10 @@ program the **aggregate**, not single devices
 
 ---
 
+{{< slide background-video="assets/sgcg.mp4" >}}
+
+---
+
 {{< slide background-image="assets/screen3.png" >}}
 
 ---
